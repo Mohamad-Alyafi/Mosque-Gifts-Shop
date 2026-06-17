@@ -39,21 +39,22 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->label('الاسم'),
+                // TextInput::make('name')
+                //     ->required()
+                //     ->label('الاسم'),
+
+                TextInput::make('price')
+                    ->label('القيمة')
+                    ->numeric()
+                    ->required(),
 
                 Select::make('sell_point_id')
                     ->options(
                         SellPoint::pluck('name', 'id')
                     )
                     ->required()
+                    ->multiple()
                     ->label('نقطة البيع'),
-
-                TextInput::make('price')
-                    ->label('السعر')
-                    ->numeric()
-                    ->required(),
             ]);
     }
 
@@ -61,10 +62,10 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->sortable()
-                    ->searchable()
-                    ->label('الاسم'),
+                // TextColumn::make('name')
+                //     ->sortable()
+                //     ->searchable()
+                //     ->label('الاسم'),
 
                 TextColumn::make('sell_point.name')
                     ->sortable()
@@ -74,7 +75,7 @@ class CategoryResource extends Resource
                 TextColumn::make('price')
                     ->sortable()
                     ->searchable()
-                    ->label('السعر')
+                    ->label('القيمة')
             ])
             ->filters([
                 //
